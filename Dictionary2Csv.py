@@ -34,7 +34,7 @@ def main():
     originalFilePath = '/Users/kongzz/Documents/MacBook Pro/Study/考研/英语/词汇/Vocabulary Builder/demo2.csv'
     FileName = originalFilePath.split('/')[-1]
     editedFilePath = originalFilePath.replace(FileName, '')
-    wds = pd.read_csv(originalFilePath)
+    wds = pd.read_csv(originalFilePath, header=None)
     for i in range(10):
         wds['new_colu'+str(i)]=''
     url = "http://www.iciba.com/index.php"
