@@ -7,6 +7,7 @@ Created on Thu Jan 31 21:39:46 2019
 """
 import pandas as pd
 import requests
+import os
 
 def init(url):
     ua = {'User-Agent':'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36'}
@@ -30,10 +31,11 @@ def fetch_exp(s, wd, url):
 def main():
 #   使用说明：把表格另存为csv格式 保存好 复制文件的地址 替换下面    originalFilePath = ‘’的路径
 #   运行结束后 假如顺利的话 在csv同目录下 就会出现一个新的文件里面有运行结果
-#   因为我就是也给自己用的 没有考虑其他异常 假如不成功的话 再找我把～
+#   因为我就是也给自己用的 没有考虑其他异常 假如不成功的话 再找我～
     originalFilePath = '/Users/kongzz/Documents/MacBook Pro/Study/考研/英语/词汇/Vocabulary Builder/demo2.csv'
-    FileName = originalFilePath.split('/')[-1]
-    editedFilePath = originalFilePath.replace(FileName, '')
+    FileName = os.path.split(originalFilePath)[1]
+    PathName = os.path.split(originalFilePath)[0]
+#    editedFilePath = originalFilePath.replace(FileName, '')
     wds = pd.read_csv(originalFilePath, header=None)
     for i in range(10):
         wds['new_colu'+str(i)]=''
@@ -56,5 +58,6 @@ def main():
                 print( 'KeyError ' + wd)
             except:
                 print('Something wrong')
-    wds.to_csv(editedFilePath+'/'+str(originalFilePath.split('/')[-1]).split('.')[-2]+'Edited.csv')
+
+    wds.to_csv(os.path.join(PathName, FileName.split('.')[-2]+'Edited.csv'))
 main()
