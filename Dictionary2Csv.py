@@ -60,4 +60,7 @@ def main():
                 print('Something wrong')
 
     wds.to_csv(os.path.join(PathName, FileName.split('.')[-2]+'Edited.csv'))
-main()
+
+
+if __name__ == '__main__':
+    main()
